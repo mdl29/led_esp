@@ -8,11 +8,12 @@
     </ul>
 
     <br><br>
-
+    <button v-on:click="setLed">Set LED</button>
 </div>
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
   name: 'LedControl',
@@ -23,6 +24,10 @@ export default {
       }
   },
   methods: {
+      setLed(){
+          var vm = this;
+          axios.post(vm.serverUrl+"/pixel/1", vm.ledColor);
+      }
   }
 }
 
