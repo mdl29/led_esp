@@ -63,6 +63,26 @@ $ yarn serve
 
 Votre serveur est lancé, rendez-vous ensuite sur ici : http://localhost:8080
 
+## Mise en place de l'environnement de développement
+
+Installation de *Visual Studio Code* (sur Ubuntu):
+
+```bash
+$ sudo snap install code
+```
+
+Démarrer *Visual Studio Code*:
+
+```bash
+$ code
+```
+
+Installer l'extension *Vetur* dans *Visual Studio Code*:
+
+```bash
+Vetur
+```
+
 ## Notre premier composant
 
 
