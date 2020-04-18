@@ -117,9 +117,6 @@ export default {
           serverUrl: "http://localhost:5000",
           ledColor: { "red": 200, "blue": 200, "green": 200}
       }
-  },
-  methods: {
-      s
   }
 }
 
@@ -156,6 +153,8 @@ export default {
 ```
 
 Rendez-vous ensuite sur : http://localhost:8080
+
+Tag : **font_web-1.2**
 
 ### Envoie de la requête
 
