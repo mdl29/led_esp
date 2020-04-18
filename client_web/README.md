@@ -63,6 +63,8 @@ $ yarn serve
 
 Votre serveur est lancé, rendez-vous ensuite sur ici : http://localhost:8080
 
+Tag : **font_web-1.1**
+
 ## Mise en place de l'environnement de développement
 
 Installation de *Visual Studio Code* (sur Ubuntu):
