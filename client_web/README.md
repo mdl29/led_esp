@@ -87,6 +87,79 @@ Vetur
 
 ## Notre premier composant
 
+Nous allons créer notre premier composan LedControl, il affichera l'URL du serveur (Flask) et un bouton pour définir la couleur d'une LED.
+
+### Créer un fichier LedControl.Vue
+
+Allez dans le dossier `client_web/front-web-esp-led/src/components` puis créer le fichier `LedControl.vue` :
+
+```html
+<template>
+<div>
+    Serveur : <input type="text" v-model="serverUrl"><br>
+    L'URL définie est : {{ serverUrl }}<br>
+    Color de la led : <br>
+    <ul>
+        <li v-for="(colorValue, colorName) in ledColor" v-bind:key="colorName"> {{colorName}} : {{colorValue}}</li>
+    </ul>
+
+    <br><br>
+
+</div>
+</template>
+
+<script>
+
+export default {
+  name: 'LedControl',
+  data: function(){
+      return {
+          serverUrl: "http://localhost:5000",
+          ledColor: { "red": 200, "blue": 200, "green": 200}
+      }
+  },
+  methods: {
+      s
+  }
+}
+
+</script>
+
+<style scoped>
+ /** La mise en forme en CSS va ici */
+</style>
+```
+
+Ce composant afficher l'URL du serveur web.
+
+Modifiez ensuite le composant App.vue, pour qu'il affiche LedControl, voici les sources de `App.vue` :
+```html
+<template>
+  <div id="app">
+    <led-control></led-control>
+  </div>
+</template>
+
+<script>
+import LedControl from './components/LedControl.vue'
+
+export default {
+  name: 'App',
+  components: {
+    LedControl
+  }
+}
+</script>
+
+<style>
+</style>
+```
+
+Rendez-vous ensuite sur : http://localhost:8080
+
+### Envoie de la requête
+
+TODO
 
 # 2 - Choisir la couleur de la LED
 
