@@ -99,7 +99,8 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
 ### Installation
 
 ```console
-(atelierNeoPixel)$ pip install flask-restful     
+(atelierNeoPixel)$ pip install flask-restful
+(atelierNeoPixel)$ pip install flask-cors
 ```
 
 ### Démarrer le serveur du simulateur

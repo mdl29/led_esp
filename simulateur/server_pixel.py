@@ -1,10 +1,14 @@
 from flask import Flask
 from flask_restful import Api, Resource, reqparse
+from flask_cors import CORS
 
 from vrtneopixel import *
 
 app = Flask(__name__)
 api = Api(app)
+
+# initialize the Flask-Cors extension with default arguments in order to allow CORS for all domains on all routes.
+CORS(app)
 
 # LED strip configuration:
 LED_COUNT      = (10, 15)      # Number of LED pixels.
