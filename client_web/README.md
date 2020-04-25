@@ -210,3 +210,96 @@ Tag : **font_web-1.3**
 # 2 - Choisir la couleur de la LED
 
 # 3 - Choisir son ruban et piloter la couleur de chaque LED
+
+
+## Intégrer Color Picker
+
+Ajouter un composant de color picker pour sélectionner la couleur:
+
+```bash
+yarn add vue-color-picker-wheel
+```
+
+Changer le code:
+
+```html
+<template>
+<div :style="userStyle" class="currentColor">
+    Serveur : <input type="text" v-model="serverUrl"><br>
+    L'URL définie est : {{ serverUrl }}<br>
+    Color de la led : <br>
+    <ul>
+        <li v-for="(colorValue, colorName) in ledColor" v-bind:key="colorName"> {{colorName}} : {{colorValue}}</li>
+    </ul>
+
+    <div>
+        <ColorPicker :width="300" :height="300" :disabled="false" startColor="#ff0000" @colorChange="onColorChange"></ColorPicker>
+    </div>
+
+    <div class="currentColor">
+    </div>
+
+    <p>
+      Color: <input v-model="color" type="text">
+    </p>
+    Led ID: <input type="text" v-model="ledId"> <br>
+    <br><br>
+
+    <button v-on:click="setLed">Set LED {{ledId}} </button>
+</div>
+</template>
+
+<script>
+import axios from 'axios';
+import ColorPicker from 'vue-color-picker-wheel';
+
+export default {
+  name: 'LedControl',
+
+  components: {
+       ColorPicker
+  },
+
+  data: function(){
+      return {
+          serverUrl: "http://localhost:5000",
+          ledId: 0,
+          ledColor: { "red": 200, "blue": 200, "green": 200},
+
+          color: 'ff6600'
+      }
+  },
+  computed: {
+    userStyle () {
+      return {
+        '--user-color-led': this.color
+      }
+    }
+  },
+
+  methods: {
+    setLed : function () {
+        axios.post(this.serverUrl + "/pixel/" + this.ledId, this.ledColor);
+    },
+    onColorChange(colorInput) {
+        this.color = colorInput; 
+        colorInput = colorInput.replace('#', '');
+        let r = parseInt(colorInput.substring(0, 2), 16);
+        let g = parseInt(colorInput.substring(2, 4), 16);
+        let b = parseInt(colorInput.substring(4, 6), 16);
+        this.ledColor = { "red": r, "blue": g, "green": b};
+    }    
+  }
+}
+
+</script>
+
+<style scoped>
+ /** La mise en forme en CSS va ici */
+ .currentColor {
+    width: 50 px;
+    height: 50 px;
+    background-color: var(--user-color-led);
+ }
+</style>
+```
